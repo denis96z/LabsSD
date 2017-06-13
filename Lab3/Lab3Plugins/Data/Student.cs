@@ -7,23 +7,28 @@ namespace Lab3Plugins.Data
 {
     public class Student : IPerson
     {
+        public string Text { get; } = "Студент";
         protected PersonAttribute[] attributes = new PersonAttribute[4];
 
         public Student()
         {
             attributes[0].Name = "Name";
+            attributes[0].Text = "Имя";
             attributes[0].Type = "System.String";
             attributes[0].Value = "";
 
             attributes[1].Name = "MiddleName";
+            attributes[1].Text = "Отчество";
             attributes[1].Type = "System.String";
             attributes[1].Value = "";
 
             attributes[2].Name = "Surname";
+            attributes[2].Text = "Фамилия";
             attributes[2].Type = "System.String";
             attributes[2].Value = "NewStudent";
 
             attributes[3].Name = "Rating";
+            attributes[3].Text = "Рейтинг";
             attributes[3].Type = "System.Int32";
             attributes[3].Value = 0;
         }
@@ -98,7 +103,7 @@ namespace Lab3Plugins.Data
 
         public override string ToString()
         {
-            return "Student: " + this["Surname"] + " " + this["Name"] + " " + this["MiddleName"];
+            return Text + ": " + this["Surname"] + " " + this["Name"] + " " + this["MiddleName"];
         }
     }
 }

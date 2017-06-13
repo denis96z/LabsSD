@@ -63,7 +63,7 @@ namespace Lab3Plugins.Data
 
         public override string ToString()
         {
-            return "Group: " + Name;
+            return "Группа: " + Name;
         }
 
         public IPerson this[int index]

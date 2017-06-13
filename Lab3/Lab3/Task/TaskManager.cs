@@ -100,7 +100,7 @@ namespace Lab3.Task
                 university[uiManager.UniversityMemberIndex] is Group)
             {
                 Group group = university[uiManager.UniversityMemberIndex] as Group;
-                command = new EditGroupNameCommand(group, uiManager.ReadAttribute("Group"));
+                command = new EditGroupNameCommand(group, uiManager.ReadAttribute("Группа"));
             }
 
             if (command != null)

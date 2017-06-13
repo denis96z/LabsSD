@@ -21,109 +21,6 @@ namespace Lab3
             InitializeComponent();
         }
 
-        private void miAddPluginUniversityMember_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string type = (sender as ToolStripMenuItem).Name.Substring(2);
-                IUniversityMember member = (IUniversityMember)Activator.CreateInstance(pluginsManager[type]);
-                taskManager.AddUniversityMember(member);
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void miAddPluginGroupMember_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string type = (sender as ToolStripMenuItem).Name.Substring(2);
-                IPerson member = (IPerson)Activator.CreateInstance(pluginsManager[type]);
-                taskManager.AddGroupMember(member);
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void tvUniversity_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                taskManager.ModifyData();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void miOpen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ofdDataDialog.ShowDialog() == DialogResult.OK)
-                {
-                    taskManager.LoadData(ofdDataDialog.FileName);
-                }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void miAddGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                taskManager.AddUniversityMember(new Group("NewGroup"));
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-}
-
-        private void miAddStudent_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                taskManager.AddGroupMember(new Student());
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void miUndo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                taskManager.UndoLastChange();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        private void miRedo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                taskManager.RedoLastChange();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             try
@@ -155,7 +52,8 @@ namespace Lab3
         {
             foreach (Type uPlugin in pluginsManager.UniversityPlugins)
             {
-                ToolStripItem newItem = new ToolStripMenuItem(uPlugin.Name);
+                string text = ((IPerson)Activator.CreateInstance(uPlugin)).Text;
+                ToolStripItem newItem = new ToolStripMenuItem(text);
                 newItem.Name = "mi" + uPlugin.Name;
                 newItem.Click += miAddPluginUniversityMember_Click;
 
@@ -168,7 +66,8 @@ namespace Lab3
         {
             foreach (Type gPlugin in pluginsManager.GroupPlugins)
             {
-                ToolStripItem newItem = new ToolStripMenuItem(gPlugin.Name);
+                string text = ((IPerson)Activator.CreateInstance(gPlugin)).Text;
+                ToolStripItem newItem = new ToolStripMenuItem(text);
                 newItem.Name = "mi" + gPlugin.Name;
                 newItem.Click += miAddPluginGroupMember_Click;
 
@@ -266,6 +165,34 @@ namespace Lab3
         // Обработка событий от элементов интерфейса.
         // ---------------------------------------------------------------------------------------------
 
+        private void miAddPluginUniversityMember_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string type = (sender as ToolStripMenuItem).Name.Substring(2);
+                IUniversityMember member = (IUniversityMember)Activator.CreateInstance(pluginsManager[type]);
+                taskManager.AddUniversityMember(member);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void miAddPluginGroupMember_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string type = (sender as ToolStripMenuItem).Name.Substring(2);
+                IPerson member = (IPerson)Activator.CreateInstance(pluginsManager[type]);
+                taskManager.AddGroupMember(member);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
         private void miUniversityActionPlugin_Click(object sender, EventArgs e)
         {
             try
@@ -289,6 +216,81 @@ namespace Lab3
                 IGroupActionPlugin plugin = (IGroupActionPlugin)Activator.
                     CreateInstance(pluginsManager[type]);
                 taskManager.ApplyGroupActionPlugin(plugin);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void tvUniversity_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                taskManager.ModifyData();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void miOpen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ofdDataDialog.ShowDialog() == DialogResult.OK)
+                {
+                    taskManager.LoadData(ofdDataDialog.FileName);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void miAddGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                taskManager.AddUniversityMember(new Group("NewGroup"));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void miAddStudent_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                taskManager.AddGroupMember(new Student());
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void miUndo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                taskManager.UndoLastChange();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void miRedo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                taskManager.RedoLastChange();
             }
             catch (Exception exception)
             {

@@ -36,7 +36,7 @@ namespace Lab3.GUI
                     foreach (var attribute in uPersonMember)
                     {
                         uPersonMemberNode.Nodes.
-                            Add(new TreeNode(attribute.Name + ": " + attribute.Value.ToString()));
+                            Add(new TreeNode(attribute.Text + ": " + attribute.Value.ToString()));
                     }
                     ui.University.Nodes.Add(uPersonMemberNode);
                 }
@@ -51,7 +51,7 @@ namespace Lab3.GUI
                         foreach (var attribute in gMember)
                         {
                             gMemberNode.Nodes.
-                                Add(new TreeNode(attribute.Name + ": " + attribute.Value.ToString()));
+                                Add(new TreeNode(attribute.Text + ": " + attribute.Value.ToString()));
                         }
                         uGroupMemberNode.Nodes.Add(gMemberNode);
                     }
@@ -109,27 +109,8 @@ namespace Lab3.GUI
             GroupMemberAttributeIndex = selected.Index;           
         }
 
-        public string ReadGroupName()
-        {
-            return Interaction.InputBox("GroupName:", "Изменение данных");
-        }
-
         public string ReadAttribute(string attributeName)
         {
-            return Interaction.InputBox(attributeName + ":", "Изменение данных");
-        }
-
-        public string ReadUniversityMemberAttribute()
-        {
-            string attributeName = (University[UniversityMemberIndex] as IPerson).
-                GetAttributeName(UniversityMemberAttributeIndex);
-            return Interaction.InputBox(attributeName + ":", "Изменение данных");
-        }
-
-        public string ReadGroupMemberAttributeValue()
-        {
-            string attributeName = (University[UniversityMemberIndex] as Group)
-                [GroupMemberIndex].GetAttributeName(GroupMemberAttributeIndex);
             return Interaction.InputBox(attributeName + ":", "Изменение данных");
         }
 

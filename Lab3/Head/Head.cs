@@ -7,27 +7,33 @@ namespace GroupPlugins
 {
     public class Head : IPerson
     {
+        public string Text { get; } = "Староста";
         private PersonAttribute[] attributes = new PersonAttribute[5];
 
         public Head()
         {
             attributes[0].Name = "Name";
+            attributes[0].Text = "Имя";
             attributes[0].Type = "System.String";
             attributes[0].Value = "";
 
             attributes[1].Name = "MiddleName";
+            attributes[1].Text = "Отчество";
             attributes[1].Type = "System.String";
             attributes[1].Value = "";
 
             attributes[2].Name = "Surname";
+            attributes[2].Text = "Фамилия";
             attributes[2].Type = "System.String";
             attributes[2].Value = "NewHead";
 
             attributes[3].Name = "Rating";
+            attributes[3].Text = "Рейтинг";
             attributes[3].Type = "System.String";
             attributes[3].Value = 0;
 
             attributes[4].Name = "Grants";
+            attributes[4].Text = "Стипендия";
             attributes[4].Type = "System.Int32";
             attributes[4].Value = 0;
         }
@@ -83,7 +89,7 @@ namespace GroupPlugins
 
         public override string ToString()
         {
-            return "Head: " + this["Surname"] + " " + this["Name"] + " " + this["MiddleName"];
+            return Text + ": " + this["Surname"] + " " + this["Name"] + " " + this["MiddleName"];
         }
     }
 }
