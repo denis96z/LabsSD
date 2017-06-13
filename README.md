@@ -21,3 +21,21 @@
 ![alt text](Lab3/Screenshot/img4.png)
 ![alt text](Lab3/Screenshot/img5.png)
 ![alt text](Lab3/Screenshot/img6.png)
+
+# Лабораторная работа №2
+
+Начальное состояние - все тесты не пройдены.
+
+![alt text](Lab2/Screenshot/img1.png)
+
+Конечное состояние - все тесты пройдены.
+
+![alt text](Lab2/Screenshot/img2.png)
+
+Интерфейс простого приложения (для добавления нового элемента необходимо нажать любую клавишу).
+
+![alt text](Lab2/Screenshot/img3.png)
+
+Интерфейс усложненного приложения (добавление автоматическое по таймеру).
+
+![alt text](Lab2/Screenshot/img4.png)
